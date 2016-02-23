@@ -1,14 +1,14 @@
-function color = determineColor(r, g, b)
-%DETERMINE COLOR
+function color = determineRGB(r, g, b)
+%DETERMINE RGB
 %       Determines color value of the pixel based on the rgb values
 %       Colors only analyzed for highest red green and blue content
 %       Returns 1 2 3 corresponding to Red Green and Blue respectively
 %       Returns 4 for all shades of gray(including Black and White)
 %
-%       Note: determineColor takes 8-bit RGB values only
+%       Note: determineRGB takes 8-bit RGB values only
 % 
 %       Generally,
-%       color = determineColor(r, g, b)
+%       color = determineRGB(r, g, b)
 %       color = 1x1
 %       r = 1x1 -- red value
 %       g = 1x1 -- green value
@@ -30,9 +30,18 @@ elseif (r > 255) || (g > 255) || (b > 255)
 end
 %% Start Determine Color
 
+% Kill small values
+if (r < 50)
+    r = 0;
+end
+if (g < 50)
+    g = 0;
+end
+if (b < 50)
+    b = 0;
+end
 
-
-
+% determine color
 if (r > b) && (r > g)       % Red
     color = 1;
     return

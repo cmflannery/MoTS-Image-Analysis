@@ -2,26 +2,28 @@
 clc; clear; close all;
 
 %% Data Import
-rawImage = imread('ImageTest.png');
-
+rawImage = imread('ImageTest_small.jpg');
 [h, w, num] = size(rawImage);  % h = height, w = width, num = num colors/pixel(3)
-colorCounter  = zeros(1,4); % [red, green, blue, gray]
 
-RED     = zeros(h,w,num);
-BLUE    = zeros(h,w,num);
-GREEN   = zeros(h,w,num);
+%% Initial Values
+const IDEAL = [87 227 225];
 
+global NEWIMAGE;
+NEWIMAGE = zeros(h,w,num);
+colorCounter = 0;
+
+
+%% Start Analysis
 for i=1:w
     for j=1:h % go down array first for speed
         %% initial values        
-        redVal      = rawImage(h,w,1);
-        greenVal    = rawImage(h,w,2);
-        blueVal     = rawImage(h,w,3);
+        pixelVal(1)      = rawImage(j,i,1);
+        pixelVal(2)      = rawImage(j,i,2);
+        pixelVal(3)      = rawImage(j,i,3);
         
         %% functions
-        color       = determineColor(redVal, greenVal, blueVal);
-        
-        colorCounter(1, color)++;
-        
+        if getColor(pixelVal, IDEAL)  
+            colorCounter = colorCounter + 1;
     end
 end
+imwrite(NEWIMAGE, newimage.jpg)
