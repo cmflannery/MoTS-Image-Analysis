@@ -1,5 +1,5 @@
 function a = buildColor(i,j,val, NEWIMAGE);
-%BUILDCOLOR     buildColor
+%BUILDCOLOR 
 %       adds actual color that is passes getColor to new Array
 %       creates new image with only color visible
 %       default array is black
@@ -20,3 +20,5 @@ end
 %% Start buildColor()
 
 NEWIMAGE(i,j,:) = val;
+a = 0;
+return
