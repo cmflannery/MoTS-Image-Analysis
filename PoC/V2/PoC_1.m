@@ -6,11 +6,11 @@ rawImage = imread('Test_1.jpg');
 [h, w, num] = size(rawImage);  % h = height, w = width, num = num colors/pixel(3)
 
 %% Initial Values
-IDEAL = [0 137 235];
+IDEAL = [0 137 255];
 pixelVal = zeros(1,num);
 
 global NEWIMAGE;
-NEWIMAGE = zeros(h,w,num);
+NEWIMAGE = uint8(zeros(h,w,num));
 colorCounter = 0;
 
 
@@ -23,7 +23,7 @@ for j=1:w
         pixelVal(3)      = rawImage(i,j,3);
         
         %% functions
-        if getColor(pixelVal, IDEAL)  
+        if (getColor(pixelVal, IDEAL))
             colorCounter = colorCounter + 1;
             buildColor(i,j,pixelVal,NEWIMAGE);
         end

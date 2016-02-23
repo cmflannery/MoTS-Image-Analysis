@@ -15,7 +15,7 @@ function value = getColor(actual,ideal)
 %
 %      returns true if color is a match and false if color is not a match
 
-%% create variables
+%% Declare variables
 r = actual(1);
 g = actual(2);
 b = actual(3);
@@ -23,6 +23,10 @@ b = actual(3);
 R = ideal(1);
 G = ideal(2);
 B = ideal(3);
+
+mod_val = uint8(zeros(1,3));
+
+sigma = 25; % allowable std deviation
 %% Error Checking
 if (r < 0) || (g < 0) || (b < 0) || ...         % check actual values
         (R < 0) || (G < 0) || (B < 0)           % check ideal values
@@ -32,17 +36,44 @@ elseif (r > 255) || (g > 255) || (b > 255) || ...   % actual
     error('Error 2, Pixel values can not be greater than 255')
 end
 %% Begin getColor()
-
-sigma = 25; % allowable std deviation
-
-dr = abs(r - R);
-dg = abs(g - G);
-db = abs(b - B);
-
-if (dr <= sigma) && (dg <= sigma) && (db <= sigma)
+% check 1
+if getDeviation(actual, ideal, sigma)
     value = true;
-    return
+    return;
 else
     value = false;
-    return
+    % continue to next check
+end
+
+% check 2
+for n=1:10
+    shade_darker   = 1/n * actual;
+    shade_brighter  = n * actual;
+    
+    if shade_darker(1) > 255
+        shade_darker(1) = 255;
+    end
+    if shade_darker(2) > 255
+        shade_darker(2) = 255;
+    end
+    if shade_darker(3) > 255
+        shade_darker(3) = 255;
+    end
+    if shade_brighter(1) > 255
+        shade_brighter(1) = 255;
+    end
+    if shade_brighter(2) > 255
+        shade_brighter(2) = 255;
+    end
+    if shade_brighter(3) > 255
+        shade_brighter(3) = 255;
+    end
+    
+    if getDeviation(shade_darker,ideal,sigma) ||...
+            getDeviation(shade_brighter,ideal,sigma)
+        value = true;
+        return
+    else
+        value = false;
+    end
 end
