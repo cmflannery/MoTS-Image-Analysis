@@ -1,0 +1,27 @@
+%% Preamble
+clc; clear; close all;
+
+%% Data Import
+rawImage = imread('ImageTest.png');
+
+[h, w, num] = size(rawImage);  % h = height, w = width, num = num colors/pixel(3)
+colorCounter  = zeros(1,4); % [red, green, blue, gray]
+
+RED     = zeros(h,w,num);
+BLUE    = zeros(h,w,num);
+GREEN   = zeros(h,w,num);
+
+for i=1:w
+    for j=1:h % go down array first for speed
+        %% initial values        
+        redVal      = rawImage(h,w,1);
+        greenVal    = rawImage(h,w,2);
+        blueVal     = rawImage(h,w,3);
+        
+        %% functions
+        color       = determineColor(redVal, greenVal, blueVal);
+        
+        colorCounter(1, color)++;
+        
+    end
+end
