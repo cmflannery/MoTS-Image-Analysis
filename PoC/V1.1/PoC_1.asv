@@ -6,7 +6,7 @@ rawImage = imread('red_Dye.jpg');
 [h, w, num] = size(rawImage);  % h = height, w = width, num = num colors/pixel(3)
 
 %% Initial Values
-IDEAL = [200 20 0.5]; % Perfect mixture value
+IDEAL = [200  1]; % Perfect mixture value
 pixelVal = zeros(1,num);
 
 global NEWIMAGE;

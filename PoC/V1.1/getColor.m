@@ -26,7 +26,7 @@ B = ideal(3);
 
 mod_val = uint8(zeros(1,3));
 
-sigma = 25; % allowable std deviation
+sigma = 40; % allowable std deviation
 %% Error Checking
 if (r < 0) || (g < 0) || (b < 0) || ...         % check actual values
         (R < 0) || (G < 0) || (B < 0)           % check ideal values

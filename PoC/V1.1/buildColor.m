@@ -1,4 +1,4 @@
-function a = buildColor(i,j,val, NEWIMAGE);
+function a = buildColor(i,j,val, NEWIMAGE)
 %BUILDCOLOR 
 %       adds actual color that is passes getColor to new Array
 %       creates new image with only color visible
@@ -18,7 +18,6 @@ if (size(val) ~= [1 3])
     error('Error buildColor 1: val must be a 1x3 array of rgb values');
 end
 %% Start buildColor()
-
 NEWIMAGE(i,j,:) = val;
 a = 0;
 return
