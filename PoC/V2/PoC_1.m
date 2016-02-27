@@ -6,7 +6,7 @@ rawImage = imread('Test_1.jpg');
 [h, w, num] = size(rawImage);  % h = height, w = width, num = num colors/pixel(3)
 
 %% Initial Values
-IDEAL = [0 137 255];
+IDEAL = [0 137 255]; % Perfect mixture value
 pixelVal = zeros(1,num);
 
 global NEWIMAGE;
