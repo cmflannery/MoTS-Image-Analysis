@@ -32,3 +32,4 @@ else
     goodPixel = false;
     return
 end
+end

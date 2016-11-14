@@ -2,11 +2,11 @@
 clc; clear; close all;
 
 %% Data Import
-rawImage = imread('red_Dye.jpg');
+rawImage = imread('Fluorescence_in_water.jpg');
 [h, w, num] = size(rawImage);  % h = height, w = width, num = num colors/pixel(3)
 
 %% Initial Values
-IDEAL = [200 20 0.5]; % Perfect mixture value
+IDEAL = [28 123 129]; % Perfect mixture value
 pixelVal = zeros(1,num);
 
 global NEWIMAGE;
@@ -29,5 +29,5 @@ for j=1:w
         end
     end
 end
-imwrite(NEWIMAGE, 'Dye_newimage.jpg');
+imwrite(NEWIMAGE, 'Fluorescence_newimage.jpg');
 imshow(NEWIMAGE);
